@@ -46,7 +46,7 @@
     <!-- Custom styles -->
     <!-- TODO: If needed, uncomment and link your custom CSS file here. -->
     <!-- <link rel="stylesheet" href="path/to/custom.css" /> -->
-<title>Submit Your Response</title> <link rel="stylesheet" href="https://cdn.gcds.code.gov/gcds-0.30.0.min.css"> <script src="https://cdn.gcds.code.gov/gcds-0.30.0.min.js"></script> <style> .form-container { position: relative; display: inline-block; width: 100%; } gcds-textarea { width: calc(100% - 120px); /* Adjust based on button size */ box-sizing: border-box; } .submit-button { position: absolute; right: 10px; bottom: 10px; background-color: skyblue; color: white; padding: 5px 10px; border: none; cursor: pointer; font-size: 14px; display: none; /* Initially hidden */ } </style>
+<title>Submit Your Response</title> <link rel="stylesheet" href="https://cdn.gcds.code.gov/gcds-0.30.0.min.css"> <script src="https://cdn.gcds.code.gov/gcds-0.30.0.min.js"></script> <style> .form-container { position: relative; width: 100%; } .textarea-container { position: relative; } textarea { width: calc(100% - 50px); /* Adjust based on button size */ height: 100px; /* Adjust as needed */ padding-right: 60px; /* Make space for the button */ box-sizing: border-box; border: 1px solid grey; /* Default single grey line border */ transition: border 0.3s ease-in-out; /* Smooth transition */ } textarea:focus { border: 3px double brightblue; /* Double bright blue border on focus */ outline: none; /* Remove default outline */ } .submit-button { position: absolute; right: 10px; bottom: 10px; background-color: skyblue; color: white; padding: 5px 10px; border: none; cursor: pointer; font-size: 14px; display: none; /* Initially hidden */ } </style>
   </head>
 
   <body>
@@ -89,7 +89,7 @@
         <gcds-text>
          I love all of them but some people may have favourite dogs. What are yours? 
         </gcds-text>
-<h1>Submit Your Response</h1> <form action="your-server-side-script-url" method="POST"> <div class="form-container"> <gcds-textarea textarea-id="textarea-props" label="Your Response" name="response" hint="Please enter your response here." oninput="showSubmitButton()" > </gcds-textarea> <button type="submit" class="submit-button" id="submitButton">Submit</button> </div> </form> <script> function showSubmitButton() { var textarea = document.querySelector('gcds-textarea'); var button = document.getElementById('submitButton'); if (textarea.value.trim() !== "") { button.style.display = 'block'; } else { button.style.display = 'none'; } } </script>
+<h1>Submit Your Response</h1> <form action="your-server-side-script-url" method="POST"> <div class="form-container"> <label for="response">Your Response</label> <div class="textarea-container"> <textarea id="response" name="response" placeholder="Please enter your response here." oninput="showSubmitButton()"></textarea> <button type="submit" class="submit-button" id="submitButton">Submit</button> </div> </div> </form> <script> function showSubmitButton() { var textarea = document.getElementById('response'); var button = document.getElementById('submitButton'); if (textarea.value.trim() !== "") { button.style.display = 'block'; } else { button.style.display = 'none'; } } </script>
         <gcds-heading tag="h3">Subsection heading</gcds-heading>
         <gcds-text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
