@@ -46,7 +46,7 @@
     <!-- Custom styles -->
     <!-- TODO: If needed, uncomment and link your custom CSS file here. -->
     <!-- <link rel="stylesheet" href="path/to/custom.css" /> -->
-    <title>Submit Your Response</title> <link rel="stylesheet" href="https://cdn.gcds.code.gov/gcds-0.30.0.min.css"> <script src="https://cdn.gcds.code.gov/gcds-0.30.0.min.js"></script> <style> .form-container { display: flex; align-items: center; } .submit-button { background-color: neon; color: pink; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; margin-left: 10px; } </style>
+    <title>Submit Your Response</title> <link rel="stylesheet" href="https://cdn.gcds.code.gov/gcds-0.30.0.min.css"> <script src="https://cdn.gcds.code.gov/gcds-0.30.0.min.js"></script> <style> .form-container { position: relative; display: inline-block; } gcds-textarea { width: 100%; } .submit-button { position: absolute; right: 10px; bottom: 10px; background-color: skyblue; color: white; padding: 5px 10px; border: none; cursor: pointer; font-size: 14px; } </style>
   </head>
 
   <body>
@@ -89,7 +89,7 @@
         <gcds-text>
          I love all of them but some people may have favourite dogs. What are yours? 
         </gcds-text>
-        <h1>Submit Your Response</h1> <form action="your-server-side-script-url" method="POST" class="form-container"> <gcds-textarea textarea-id="textarea-props" label="Your Response" name="response" hint="Please enter your response here." > </gcds-textarea> <button type="submit" class="submit-button">Submit</button> </form>
+        <h1>Submit Your Response</h1> <form action="your-server-side-script-url" method="POST"> <div class="form-container"> <gcds-textarea textarea-id="textarea-props" label="Your Response" name="response" hint="Please enter your response here." > </gcds-textarea> <button type="submit" class="submit-button">Submit</button> </div> </form>
         <gcds-heading tag="h3">Subsection heading</gcds-heading>
         <gcds-text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
