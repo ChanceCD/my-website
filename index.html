@@ -46,6 +46,7 @@
     <!-- Custom styles -->
     <!-- TODO: If needed, uncomment and link your custom CSS file here. -->
     <!-- <link rel="stylesheet" href="path/to/custom.css" /> -->
+    <title>Submit Your Response</title> <link rel="stylesheet" href="https://cdn.gcds.code.gov/gcds-0.30.0.min.css"> <script src="https://cdn.gcds.code.gov/gcds-0.30.0.min.js"></script> <style> .form-container { display: flex; align-items: center; } .submit-button { background-color: neon; color: pink; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; margin-left: 10px; } </style>
   </head>
 
   <body>
@@ -88,15 +89,7 @@
         <gcds-text>
          I love all of them but some people may have favourite dogs. What are yours? 
         </gcds-text>
-        <form action="your-server-side-script-url" method="POST">
-        <gcds-textarea
-  textarea-id="textarea-props"
-  label="What kind of dog do you like best?"
-  name="textarea-name"
-  hint="For example, boxer, german shepherd, etc."
->
-</gcds-textarea>
-<br> <button type="submit">Submit</button> </form>
+        <h1>Submit Your Response</h1> <form action="your-server-side-script-url" method="POST" class="form-container"> <gcds-textarea textarea-id="textarea-props" label="Your Response" name="response" hint="Please enter your response here." > </gcds-textarea> <button type="submit" class="submit-button">Submit</button> </form>
         <gcds-heading tag="h3">Subsection heading</gcds-heading>
         <gcds-text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
