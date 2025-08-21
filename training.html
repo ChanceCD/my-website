@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Canada.ca Content Style Guide — Training</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0b0c0d;
+      --muted: #5b5f63;
+      --brand: #2b72ff;
+      --brand-2: #15a371;
+      --surface: #f4f6f8;
+      --ok: #127c47;
+      --warn: #a13e00;
+      --focus: #ffbf47;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: var(--bg);
+    }
+    a { color: var(--brand); }
+    header {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(6px);
+      background: color-mix(in srgb, var(--bg) 82%, #fff0);
+      border-bottom: 1px solid #e6e9ec;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 12px 16px;
+    }
+    .title { font-weight: 700; font-size: clamp(16px, 2vw, 20px); }
+    .actions { display:flex; gap: 8px; }
+    .btn {
+      appearance: none; border: 1px solid #d1d7de; background: #fff; color: #111;
+      padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 600;
+    }
+    .btn:hover { border-color: #b6bec8; }
+    .btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .btn.ghost { background: transparent; }
+
+    .layout { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100dvh - 56px); }
+    nav {
+      border-right: 1px solid #e6e9ec; background: var(--surface);
+      padding: 16px; position: sticky; top: 56px; align-self: start; height: calc(100dvh - 56px); overflow: auto;
+    }
+    nav h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 8px 0 12px; }
+    nav ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    nav a { display: block; padding: 8px 10px; border-radius: 8px; text-decoration: none; color: #19324c; font-weight: 600; }
+    nav a:hover, nav a[aria-current="true"] { background: #e8f0ff; color: #0b3b85; }
+
+    main { max-width: 900px; padding: 24px; }
+    section { padding: 32px 0; border-bottom: 1px solid #eceff2; }
+    section:last-of-type { border-bottom: 0; }
+    h1 { font-size: clamp(22px, 3vw, 34px); line-height: 1.2; margin: 8px 0 4px; }
+    h2 { font-size: clamp(18px, 2.2vw, 24px); margin: 0 0 8px; }
+    h3 { font-size: 18px; margin: 16px 0 8px; }
+    .lead { color: var(--muted); max-width: 70ch; }
+    .callout { background: #eef6ff; border: 1px solid #d9e9ff; padding: 12px 16px; border-radius: 12px; }
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav { display:none;} }
+
+    .card { background: #fff; border: 1px solid #e6e9ec; border-radius: 12px; padding: 16px; }
+    .badge { display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius: 999px; font-size: 12px; border:1px solid #d1d7de; background:#fff; }
+    .badge.ok { border-color: #cfe9dd; background: #eefaf4; color: var(--ok); }
+    .badge.warn { border-color: #f2d2bf; background: #fff6ef; color: var(--warn); }
+
+    details { border: 1px solid #e6e9ec; border-radius: 12px; padding: 12px 14px; background: #fff; }
+    details summary { cursor: pointer; font-weight: 700; }
+
+    .example { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .bad, .good { border: 2px solid; border-radius: 10px; padding: 12px; background: #fff; }
+    .bad { border-color: #ffdbcc; }
+    .good { border-color: #cfe9dd; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; background: #f5f7f9; border: 1px solid #e6e9ec; border-radius: 6px; padding: 1px 6px; }
+
+    .quiz { border: 1px solid #e6e9ec; border-radius: 12px; padding: 16px; background: #fff; }
+    .quiz .q { font-weight: 700; }
+    .quiz .answers { display: grid; gap: 8px; margin: 12px 0; }
+    .quiz label { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; padding: 8px 10px; border:1px solid #e6e9ec; border-radius: 10px; cursor: pointer; }
+    .quiz input[type="radio"] { margin-top: 2px; }
+    .feedback { margin-top: 8px; font-weight: 700; }
+    .feedback.ok { color: var(--ok); }
+    .feedback.no { color: #a40000; }
+
+    .checklist li { margin-bottom: 8px; }
+    .sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip { position: absolute; left: -999px; top: 6px; background: #111; color: #fff; padding: 8px 10px; border-radius: 8px; }
+    .skip:focus { left: 6px; outline: 3px solid var(--focus); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header role="banner">
+    <div class="header-inner">
+      <div class="title">Canada.ca Content Style Guide — Training</div>
+      <div class="actions">
+        <button class="btn ghost" onclick="window.print()" aria-label="Print this page">Print</button>
+        <button class="btn primary" onclick="scrollToTop()">Back to top</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="On this page">
+      <h2>Modules</h2>
+      <ol>
+        <li><a href="#intro" aria-current="true">1. Overview</a></li>
+        <li><a href="#principles">2. Core principles</a></li>
+        <li><a href="#plain">3. Plain language</a></li>
+        <li><a href="#tone">4. Tone</a></li>
+        <li><a href="#style">5. Style conventions</a></li>
+        <li><a href="#structure">6. Structuring content</a></li>
+        <li><a href="#links">7. Links</a></li>
+        <li><a href="#media">8. Images & video</a></li>
+        <li><a href="#bilingual">9. Bilingual requirements</a></li>
+        <li><a href="#checklist">10. Quick checklist</a></li>
+        <li><a href="#quiz">11. Mini‑quiz</a></li>
+        <li><a href="#resources">12. Resources</a></li>
+      </ol>
+    </nav>
+
+    <main id="main" role="main">
+      <section id="intro">
+        <h1>Welcome</h1>
+        <p class="lead">This single‑file training walks you through the essentials of the <em>Canada.ca Content Style Guide</em>: what it is, who must use it, and how to apply it in your day‑to‑day writing for the web.</p>
+        <div class="callout">
+          <strong>Why it matters:</strong> The Style Guide helps make government content <em>easy to find</em>, <em>easy to understand</em>, and <em>easy to use</em> for everyone. You’ll practice with quick examples and finish with a checklist you can print.
+        </div>
+      </section>
+
+      <section id="principles">
+        <h2>Core principles</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Help people complete tasks</h3>
+            <p>Most visitors come to complete a task. Prioritize what helps them act: eligibility, steps, deadlines, contact, and what to do next.</p>
+          </div>
+          <div class="card">
+            <h3>Consider audience needs</h3>
+            <p>Write for accessibility, inclusivity, and readability. Avoid barriers like long blocks of text, jargon, and unnecessarily complex sentences.</p>
+          </div>
+        </div>
+        <details>
+          <summary>Tips to apply it</summary>
+          <ul>
+            <li>Lead with the most important action or message on each page.</li>
+            <li>Design for phones first—keep paragraphs and headings short.</li>
+            <li>Provide equivalent content in English and French.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="plain">
+        <h2>Plain language</h2>
+        <p>Plain language is required. It means people can quickly <em>find</em> what they need, <em>understand</em> it, and <em>use</em> it. Use the inverted pyramid and keep sentences short.</p>
+        <div class="example" role="group" aria-label="Plain language example">
+          <div class="bad" aria-label="Poor example">
+            <span class="badge warn">Needs work</span>
+            <p>Stakeholders are hereby advised that pursuant to the aforementioned regulations, applicants are obligated to furnish documentary evidence prior to initialization of the process.</p>
+          </div>
+          <div class="good" aria-label="Better example">
+            <span class="badge ok">Plain language</span>
+            <p><strong>Before you start:</strong> You <strong>must</strong> show your documents to apply. Bring a photo ID and proof of address.</p>
+          </div>
+        </div>
+        <h3>Checklist</h3>
+        <ul>
+          <li>Start with what matters most (inverted pyramid).</li>
+          <li>Use familiar words and short sentences.</li>
+          <li>Prefer active, positive phrasing.</li>
+          <li>Cut jargon and noun strings (replace with clear verbs).</li>
+        </ul>
+      </section>
+
+      <section id="tone">
+        <h2>Tone</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Speak to the person</h3>
+            <p>Use second person (<em>you, your</em>) in titles, navigation, and body text.</p>
+            <p class="kbd">Change your address • Replace your card</p>
+          </div>
+          <div class="card">
+            <h3>Use “we” for Government of Canada</h3>
+            <p>Write from the GC perspective. Name a specific institution only when people must contact it or it plays a key role.</p>
+          </div>
+        </div>
+        <h3>Expressing requirements</h3>
+        <ul>
+          <li><strong>Legal requirement:</strong> use <em>must</em> — “You <em>must</em> submit your claim within 30 days.”</li>
+          <li><strong>Administrative requirement:</strong> use <em>need to</em> — “You <em>need to</em> bring photo ID.”</li>
+        </ul>
+      </section>
+
+      <section id="style">
+        <h2>Style conventions</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Capitalization & punctuation</h3>
+            <ul>
+              <li>Use sentence case for headings and navigation.</li>
+              <li>Capitalize formal names (acts, regulations, program and institution names).</li>
+              <li>Keep punctuation simple (avoid unnecessary commas and colons).</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Words in transition</h3>
+            <ul>
+              <li><strong>website</strong> (not <em>web site</em>)</li>
+              <li><strong>web page</strong> (not <em>webpage</em>)</li>
+              <li><strong>email</strong> (not <em>e‑mail</em>)</li>
+              <li><strong>online</strong> (not <em>on line</em>)</li>
+              <li><strong>web</strong> (lowercase)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="structure">
+        <h2>Structuring content</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Page titles & headings</h3>
+            <ul>
+              <li>Describe what’s on the page (avoid slogans or clever phrasing).</li>
+              <li>Use one clear H1 per page; use H2/H3 to show structure.</li>
+              <li>Include keywords people actually search for.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Lists & tables</h3>
+            <ul>
+              <li>Prefer short vertical lists (aim for ≤7 items).</li>
+              <li>Be consistent in list grammar; keep one idea per bullet.</li>
+              <li>Use tables only for data, with proper row/column headers.</li>
+            </ul>
+          </div>
+        </div>
+        <details>
+          <summary>SEO‑adjacent: metadata</summary>
+          <p>Use your H1 as the title tag. Write a short, descriptive meta description with natural keywords.</p>
+        </details>
+      </section>
+
+      <section id="links">
+        <h2>Links</h2>
+        <p>Links should be descriptive and able to stand alone. Use unique link text when links go to different destinations, and indicate downloads.</p>
+        <div class="example" role="group" aria-label="Link text examples">
+          <div class="bad">
+            <span class="badge warn">Needs work</span>
+            <ul>
+              <li><a href="#" onclick="return false;">Click here</a></li>
+              <li><a href="#" onclick="return false;">More information</a></li>
+              <li><a href="#" onclick="return false;">Form (PDF)</a></li>
+            </ul>
+          </div>
+          <div class="good">
+            <span class="badge ok">Descriptive</span>
+            <ul>
+              <li><a href="#" onclick="return false;">Check if you’re eligible</a></li>
+              <li><a href="#" onclick="return false;">Apply for the caregiver benefit</a></li>
+              <li><a href="#" onclick="return false;">Download the caregiver benefit form (PDF, 1.2 MB)</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="callout"><strong>Note:</strong> If a public page must link to content available only on the GC network, add “(accessible only on the Government of Canada network)” after the link.</p>
+      </section>
+
+      <section id="media">
+        <h2>Images & video</h2>
+        <ul>
+          <li>Provide meaningful alt text for informative images.</li>
+          <li>Use captions or transcripts for multimedia.</li>
+          <li>Ensure images and multimedia are equivalent in English and French (or provide equivalent information in both languages).</li>
+        </ul>
+      </section>
+
+      <section id="bilingual">
+        <h2>Bilingual requirements</h2>
+        <p>Under the <em>Official Languages Act</em>, publish communications and services to the public in both official languages. Translation should reflect Canadian conventions in English and French. Provide equivalent information in both languages, including images, media and transcripts.</p>
+      </section>
+
+      <section id="checklist">
+        <h2>Quick checklist</h2>
+        <ul class="checklist">
+          <li>Does the page start with the task or most important information?</li>
+          <li>Are sentences short and written in active, positive voice?</li>
+          <li>Are headings descriptive, in sentence case, and scannable?</li>
+          <li>Are lists used for steps, options, or key points (≤7 items)?</li>
+          <li>Is link text descriptive and unique? Are downloads labelled?</li>
+          <li>Is content inclusive and accessible (alt text, transcripts, plain language)?</li>
+          <li>Is the French version equivalent and published at the same time?</li>
+          <li>Is the title tag and meta description set and meaningful?</li>
+        </ul>
+      </section>
+
+      <section id="quiz">
+        <h2>Mini‑quiz</h2>
+        <div class="quiz" data-correct="b">
+          <div class="q">1) Which page title best follows the Style Guide?</div>
+          <div class="answers">
+            <label><input type="radio" name="q1" value="a"> Your Pathway to Financial Empowerment</label>
+            <label><input type="radio" name="q1" value="b"> Apply for the disability tax credit</label>
+            <label><input type="radio" name="q1" value="c"> The Disability Tax Credit Program — Enhancing Accessibility</label>
+          </div>
+          <button class="btn" onclick="check(this)">Check</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="quiz" data-correct="c">
+          <div class="q">2) Choose the best link text.</div>
+          <div class="answers">
+            <label><input type="radio" name="q2" value="a"> Click here</label>
+            <label><input type="radio" name="q2" value="b"> Read more</label>
+            <label><input type="radio" name="q2" value="c"> Check processing times</label>
+          </div>
+          <button class="btn" onclick="check(this)">Check</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="quiz" data-correct="a">
+          <div class="q">3) Pick the best sentence.</div>
+          <div class="answers">
+            <label><input type="radio" name="q3" value="a"> You must submit your claim within 30 days.</label>
+            <label><input type="radio" name="q3" value="b"> Claims are required to be submitted within a 30‑day timeframe.</label>
+            <label><input type="radio" name="q3" value="c"> It is highly recommended that a claim be submitted within 30 days.</label>
+          </div>
+          <button class="btn" onclick="check(this)">Check</button>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+      </section>
+
+      <section id="resources">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="https://design.canada.ca/style-guide/" target="_blank" rel="noopener">Canada.ca Content Style Guide</a></li>
+          <li><a href="https://design.canada.ca/style-guide/update-history.html" target="_blank" rel="noopener">Style Guide — update history</a></li>
+          <li><a href="https://www.noslangues-ourlanguages.gc.ca/en/writing-tips-plus/index-eng" target="_blank" rel="noopener">Writing Tips Plus (Translation Bureau)</a></li>
+          <li><a href="https://blog.canada.ca/2021/07/20/effective-links.html" target="_blank" rel="noopener">Effective links (DTO blog)</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function scrollToTop(){ window.scrollTo({top:0, behavior:'smooth'}); }
+    // Left‑nav highlight
+    const navLinks = [...document.querySelectorAll('nav a')];
+    const sections = [...document.querySelectorAll('main section')];
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          navLinks.forEach(a=>a.removeAttribute('aria-current'));
+          const id = e.target.id;
+          const current = document.querySelector(`nav a[href="#${id}"]`);
+          if(current) current.setAttribute('aria-current','true');
+        }
+      });
+    },{ rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    sections.forEach(s=>observer.observe(s));
+
+    // Quiz logic
+    function check(btn){
+      const box = btn.closest('.quiz');
+      const name = box.querySelector('input[type="radio"]').name;
+      const chosen = box.querySelector('input[type="radio"]:checked');
+      const fb = box.querySelector('.feedback');
+      if(!chosen){ fb.textContent='Pick an answer first.'; fb.className='feedback no'; return; }
+      const correct = box.dataset.correct;
+      if(chosen.value === correct){ fb.textContent = 'Nice! That follows the Style Guide.'; fb.className='feedback ok'; }
+      else { fb.textContent = 'Not quite. Try again — remember: descriptive, direct, task‑focused.'; fb.className='feedback no'; }
+    }
+    window.check = check;
+  </script>
+</body>
+</html>
